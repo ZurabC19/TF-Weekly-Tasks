@@ -17,9 +17,6 @@
             android:name="com.driuft.redbutton.ui.FinalActivity"
             android:exported="false" />
 
-        <!-- REMOVE the comment tags <!-> below to declare MainActivity -->
-
-        <!--
         <activity
             android:name="com.driuft.redbutton.MainActivity"
             android:screenOrientation="portrait"
@@ -31,7 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        -->
 
     </application>
 

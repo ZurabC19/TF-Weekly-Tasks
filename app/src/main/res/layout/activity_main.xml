@@ -30,6 +30,7 @@
         android:text="@string/header_description_text"
         style="@style/TextSubHeaderLightGray"/>
 
+    <!-- If the button can't be clicked there might be something in MainActivity.kt preventing it... -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/red_button"
         android:layout_width="wrap_content"

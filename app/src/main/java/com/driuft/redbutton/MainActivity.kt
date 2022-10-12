@@ -1,15 +1,14 @@
 package com.driuft.redbutton
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.driuft.redbutton.databinding.ActivityMainBinding
 import com.driuft.redbutton.ui.FinalActivity
 import es.dmoral.toasty.Toasty
-import nl.dionsegijn.konfetti.xml.KonfettiView
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +18,9 @@ class MainActivity : AppCompatActivity() {
     private val cyanButton get() = binding.cyanButton
     private val tinyYellowButton get() = binding.tinyYellowButton
     private val superSecretView get() = binding.SUPERSECRETPOWERLEVELVIEW
+    private val sharedPref: SharedPreferences by lazy {
+        getPreferences(MODE_PRIVATE)
+    }
 
     private var superSecretCounter = 0
 
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        configureUI()
         configureToasty()
         setupClickListeners()
     }
@@ -66,11 +69,16 @@ class MainActivity : AppCompatActivity() {
      * I wonder what will happen next...
      */
     private fun tinyButtonLongClicked(): Boolean {
-        // Update visibility
-        tinyYellowButton.visibility = View.GONE
-        redButton.visibility = View.VISIBLE
+        // Save state
+        with (sharedPref.edit()) {
+            putBoolean(getString(R.string.red_button_shown_key), true)
+            apply()
+        }
 
-        // Make red button NOT clickable
+        // Update visibility
+        configureUI()
+
+        // TODO: MAKE THE RED BUTTON CLICKABLE
         redButton.isClickable = false
 
         return true
@@ -109,6 +117,19 @@ class MainActivity : AppCompatActivity() {
         val i = Intent(this, FinalActivity::class.java)
         startActivity(i)
         finish()
+    }
+
+    /**
+     * Configures visibility if red button has already been shown.
+     */
+    private fun configureUI() {
+        val defaultValue = false
+        val redButtonShown = sharedPref.getBoolean(getString(R.string.red_button_shown_key), defaultValue)
+
+        if (redButtonShown) {
+            tinyYellowButton.visibility = View.GONE
+            redButton.visibility = View.VISIBLE
+        }
     }
 
     /**

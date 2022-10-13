@@ -133,18 +133,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Configures visibility if [redButton] button has already been shown.
+     * Configures UI and visibility of [blueButton] and [redButton] using [SharedPreferences].
      */
     private fun configureUI() {
+        // Default value for SharedPreferences
         val defaultValue = false
         val redColor = resources.getColor(R.color.red)
         val blueColor = resources.getColor(R.color.blue)
         val blueButtonShown = sharedPref.getBoolean(getString(R.string.blue_button_shown_key), defaultValue)
         val redButtonShown = sharedPref.getBoolean(getString(R.string.red_button_shown_key), defaultValue)
 
-        if (!blueButtonShown) {
-            blueButton.backgroundTintList = ColorStateList.valueOf(redColor)
-        } else { blueButton.backgroundTintList = ColorStateList.valueOf(blueColor) }
+        // Only update the color of the Blue button if it is visible
+        if (blueButton.visibility == View.VISIBLE) {
+            if (!blueButtonShown) {
+                blueButton.backgroundTintList = ColorStateList.valueOf(redColor)
+            } else {
+                blueButton.backgroundTintList = ColorStateList.valueOf(blueColor)
+            }
+        }
 
         if (redButtonShown) {
             tinyYellowButton.visibility = View.GONE

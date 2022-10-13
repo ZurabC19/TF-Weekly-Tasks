@@ -2,6 +2,8 @@ package com.driuft.redbutton
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -15,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val redButton get() = binding.redButton as Button
-    private val cyanButton get() = binding.cyanButton
+    private val blueButton get() = binding.blueButton
     private val tinyYellowButton get() = binding.tinyYellowButton
     private val superSecretView get() = binding.SUPERSECRETPOWERLEVELVIEW
     private val sharedPref: SharedPreferences by lazy {
@@ -36,16 +38,28 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupClickListeners() {
         redButton.setOnClickListener { congratulations() }
-        cyanButton.setOnClickListener { otherButtonClicked() }
+        blueButton.setOnClickListener { blueButtonClicked() }
         tinyYellowButton.setOnClickListener { tinyButtonClicked() }
         tinyYellowButton.setOnLongClickListener { tinyButtonLongClicked() }
         superSecretView.setOnClickListener { unclickableButton() }
     }
 
     /**
-     * Show a clue when the Cyan button is clicked.
+     * Show a clue when the [blueButton] is clicked.
      */
-    private fun otherButtonClicked() {
+    private fun blueButtonClicked() {
+        // Reveal true color
+        blueButton.setBackgroundColor(resources.getColor(R.color.blue))
+
+        // Save state
+        with (sharedPref.edit()) {
+            putBoolean(getString(R.string.blue_button_shown_key), true)
+            apply()
+        }
+
+        // Update color
+        configureUI()
+
         Toasty.info(
             this,
             getString(R.string.toast_wrong_button_error),
@@ -54,7 +68,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Shows a clue when the tiny Yellow button is clicked.
+     * Shows a clue when the [tinyYellowButton] is clicked.
      */
     private fun tinyButtonClicked() {
         Toasty.warning(
@@ -65,7 +79,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Tiny yellow button was held
+     * [tinyYellowButton] was held
      * I wonder what will happen next...
      */
     private fun tinyButtonLongClicked(): Boolean {
@@ -102,8 +116,7 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * Congratulations!!!
-     * You DID it! The [redButton] seems pleased.
-     * Creepy, but cool.
+     * You DID it! The [redButton] seems pleased with your performance.
      */
     private fun congratulations() {
         val partyEmoji = String(Character.toChars(0x1F389))
@@ -120,11 +133,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Configures visibility if red button has already been shown.
+     * Configures visibility if [redButton] button has already been shown.
      */
     private fun configureUI() {
         val defaultValue = false
+        val redColor = resources.getColor(R.color.red)
+        val blueColor = resources.getColor(R.color.blue)
+        val blueButtonShown = sharedPref.getBoolean(getString(R.string.blue_button_shown_key), defaultValue)
         val redButtonShown = sharedPref.getBoolean(getString(R.string.red_button_shown_key), defaultValue)
+
+        if (!blueButtonShown) {
+            blueButton.backgroundTintList = ColorStateList.valueOf(redColor)
+        } else { blueButton.backgroundTintList = ColorStateList.valueOf(blueColor) }
 
         if (redButtonShown) {
             tinyYellowButton.visibility = View.GONE

@@ -15,11 +15,12 @@
     <string name="other_tiny_button_description">Just a tiny button. Maybe you should try pressing and holding it…</string>
 
     <!-- Toast messages -->
-    <string name="toast_wrong_button_error">If you\'re looking for the <font color="#FF2800">RED</font> button, check activity_main.xml</string>
+    <string name="toast_wrong_button_error">Sike! I\'m not really RED.\nIf you\'re looking for the <font color="#FF2800">RED</font> button, check activity_main.xml</string>
     <string name="toast_unclickable_warning">Maybe there is a View preventing my taps in activity_main.xml</string>
     <string name="toast_do_not_press_and_hold">You should totally <b>NOT</b> PRESS AND HOLD or increase the size for easier visibility</string>
     <string name="toast_congrats">CONGRATULATIONS! %s</string>
 
     <!-- Preferences -->
     <string name="red_button_shown_key">Red button has been shown</string>
+    <string name="blue_button_shown_key">Blue button has been shown</string>
 </resources>

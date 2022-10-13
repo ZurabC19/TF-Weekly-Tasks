@@ -11,7 +11,7 @@
     <!-- Custom colors -->
     <color name="red">#FF2800</color>
     <color name="yellow">#EDFF00</color>
-    <color name="cyan">#00D7FF</color>
+    <color name="blue">#00D7FF</color>
     <color name="dark_gray">#222222</color>
     <color name="slightly_lighter_gray">#333333</color>
     <color name="light_gray">#CCCCCC</color>

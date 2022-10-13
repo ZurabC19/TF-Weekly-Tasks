@@ -63,14 +63,14 @@
 
     <!-- your standard, non-red button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/cyan_button"
+        android:id="@+id/blue_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/cyan"
+        app:backgroundTint="@color/blue"
         app:borderWidth="0dp"
         app:fabCustomSize="101dp"
         android:visibility="visible"

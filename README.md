@@ -1,10 +1,3 @@
-<!--- 
-This is a template of a lab for 2022 CodePath course development.  
-
-Note: There is NO # h1 tag, because the course portal uses h1 to render the course name automatically.  
-Pages should always start with ## h2.
--->
-
 ## Lab #4: Red Button
 
 ### Overview

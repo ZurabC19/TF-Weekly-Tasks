@@ -49,8 +49,8 @@
     <!-- your standard, much smaller, non-red button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/tiny_yellow_button"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,15 +73,9 @@
         app:backgroundTint="@color/blue"
         app:borderWidth="0dp"
         app:fabCustomSize="101dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:contentDescription="@string/other_button_description"/>
 
-    <!-- why is this here... it doesn't seem to be doing anything -->
-    <View
-        android:id="@+id/SUPER_SECRET_POWER_LEVEL_VIEW"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="9001dp"
-        android:visibility="visible"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

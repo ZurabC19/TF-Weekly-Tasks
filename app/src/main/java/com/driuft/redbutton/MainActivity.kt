@@ -5,7 +5,6 @@ import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.driuft.redbutton.databinding.ActivityMainBinding
 import com.driuft.redbutton.ui.FinalActivity
@@ -23,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         getPreferences(MODE_PRIVATE)
     }
 
-    private var superSecretCounter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,17 +98,6 @@ class MainActivity : AppCompatActivity() {
      * Something is preventing me from clicking...
      * Maybe I should check out [R.layout.activity_main] to look for anything suspicious.
      */
-    private fun unclickableButton() {
-        superSecretCounter += 1
-        // Show a clue after three (3) taps
-        if (superSecretCounter > 3) {
-            Toasty.warning(
-                this,
-                getString(R.string.toast_unclickable_warning),
-                Toasty.LENGTH_LONG
-            ).show()
-        }
-    }
 
     /**
      * Congratulations!!!

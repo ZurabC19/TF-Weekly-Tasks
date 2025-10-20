@@ -5,6 +5,7 @@ Time spent: 1.5 hours spent in total
 
 In this lab, you will build an app that displays random pet images from an online API whenever the user taps a button.  
 The goal is to understand how to make network requests, parse JSON data, and dynamically update your UI.
+![randomPetAnimation](https://github.com/user-attachments/assets/50cc184b-ae0d-49d0-9121-c16663505dd3)
 
 ---
 
